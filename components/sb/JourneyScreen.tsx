@@ -190,11 +190,11 @@ function SegControl({ active, onChange }: { active: string; onChange(v: string):
   const tabs = ["Learn & Improve", "Play & Entertain"]
   const activeIdx = tabs.indexOf(active)
   return (
-    <div style={{ margin: "16px 16px 0", background: "#EEF0F4", borderRadius: 10, padding: 4, display: "flex", gap: 4, position: "relative" }}>
+    <div style={{ margin: "16px 16px 16px", background: "#F0F2F5", borderRadius: 10, padding: 3, display: "flex", gap: 0, position: "relative" }}>
       <div style={{
-        position: "absolute", top: 4, left: 4 + activeIdx * (50),
-        width: `calc(50% - 6px)`, height: "calc(100% - 8px)", background: card, borderRadius: 8,
-        boxShadow: "0 1px 4px rgba(15,23,42,0.08), 0 0 0 0.5px rgba(15,23,42,0.04)",
+        position: "absolute", top: 3, left: 3 + activeIdx * (50),
+        width: `calc(50% - 3px)`, height: "calc(100% - 6px)", background: card, borderRadius: 7.5,
+        boxShadow: "0 1px 3px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.03)",
         transform: `translateX(${activeIdx * 100}%)`,
         transition: "transform 0.22s cubic-bezier(0.4,0,0.2,1)",
         pointerEvents: "none"
@@ -203,10 +203,11 @@ function SegControl({ active, onChange }: { active: string; onChange(v: string):
         const on = active === t
         return (
           <button key={t} onClick={() => onChange(t)} style={{
-            flex: 1, height: 40, borderRadius: 8, border: "none", fontFamily: F,
-            fontSize: 13, fontWeight: on ? 600 : 500, color: on ? t1 : t2, lineHeight: 1,
+            flex: 1, minHeight: 32, borderRadius: 7.5, border: "none", fontFamily: F,
+            fontSize: 13, fontWeight: 600, color: on ? t1 : t3, lineHeight: 1,
             cursor: "pointer", background: "transparent", position: "relative", zIndex: 1,
-            transition: "color 0.18s ease", display: "flex", alignItems: "center", justifyContent: "center"
+            transition: "color 0.18s ease", display: "flex", alignItems: "center", justifyContent: "center",
+            padding: "8px 12px"
           }}>{t}</button>
         )
       })}
@@ -219,7 +220,7 @@ function TimeTabs({ active, onChange }: { active: string; onChange(v: string): v
   const [pressed, setPressed] = useState<string | null>(null)
   const tabs = [["Last Week","Wk"], ["Last Month","Mo"], ["Last Year","Yr"], ["Lifetime","All"]]
   return (
-    <div style={{ display: "flex", gap: 8, margin: "16px 16px 0" }}>
+    <div style={{ display: "flex", gap: 8, margin: "0 16px 16px" }}>
       {tabs.map(([full, short]) => {
         const on = active === full
         const isPressed = pressed === full
@@ -228,12 +229,14 @@ function TimeTabs({ active, onChange }: { active: string; onChange(v: string): v
             onMouseDown={() => setPressed(full)} onMouseUp={() => setPressed(null)}
             onMouseLeave={() => setPressed(null)} onTouchStart={() => setPressed(full)} onTouchEnd={() => setPressed(null)}
             style={{
-              flex: 1, height: 40, borderRadius: 8, fontFamily: F, fontSize: 12, lineHeight: 1,
-              fontWeight: on ? 600 : 500, color: on ? "#fff" : t2, cursor: "pointer",
-              background: on ? navy : card, boxShadow: on ? "none" : SH1, display: "flex", alignItems: "center", justifyContent: "center",
-              outline: on ? "none" : `1px solid rgba(15,23,42,0.06)`, border: "none",
-              transform: isPressed && !on ? "scale(0.93)" : "scale(1)",
-              transition: "transform 0.12s cubic-bezier(0.4,0,0.2,1), background 0.18s ease, color 0.18s ease"
+              flex: 1, minHeight: 36, borderRadius: 8, fontFamily: F, fontSize: 12, lineHeight: 1,
+              fontWeight: 600, color: on ? "#fff" : t2, cursor: "pointer",
+              background: on ? navy : card, boxShadow: on ? "0 1px 4px rgba(8,28,58,0.12)" : "0 1px 2px rgba(15,23,42,0.05)", 
+              display: "flex", alignItems: "center", justifyContent: "center",
+              outline: on ? "none" : `0.5px solid rgba(15,23,42,0.06)`, border: "none",
+              transform: isPressed && !on ? "scale(0.96)" : "scale(1)",
+              transition: "transform 0.12s cubic-bezier(0.4,0,0.2,1), background 0.18s ease, color 0.18s ease",
+              padding: "9px 8px"
             }}>{short}</button>
         )
       })}
@@ -466,21 +469,21 @@ function BattingCircle() {
             <p style={{ fontFamily: FS, fontSize: 18, fontWeight: 400, letterSpacing: "-0.4px", color: t1, marginBottom: 4, lineHeight: 1.25 }}>Batting Circle</p>
             <p style={{ fontFamily: F, fontSize: 12, color: t2 }}>Tap any zone to explore</p>
           </div>
-          <div style={{ display: "flex", background: "#EEF0F4", borderRadius: 9, padding: 4, gap: 4, position: "relative" }}>
-            <div style={{ position: "absolute", top: 4, left: 4, width: "calc(50% - 6px)", height: "calc(100% - 8px)", background: card, borderRadius: 7, boxShadow: "0 1px 3px rgba(15,23,42,0.10)", transform: `translateX(${modeIdx * 100}%)`, transition: "transform 0.22s cubic-bezier(0.4,0,0.2,1)", pointerEvents: "none" }} />
+          <div style={{ display: "flex", background: "#F0F2F5", borderRadius: 8, padding: 3, gap: 0, position: "relative" }}>
+            <div style={{ position: "absolute", top: 3, left: 3, width: "calc(50% - 3px)", height: "calc(100% - 6px)", background: card, borderRadius: 6, boxShadow: "0 1px 3px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.03)", transform: `translateX(${modeIdx * 100}%)`, transition: "transform 0.22s cubic-bezier(0.4,0,0.2,1)", pointerEvents: "none" }} />
             {(["overview", "heatmap"] as const).map((m, idx) => (
               <button key={m} onClick={() => { setViewMode(m); setModeIdx(idx) }}
-                style={{ width: 80, height: 32, borderRadius: 7, border: "none", cursor: "pointer", fontFamily: F, fontSize: 11, fontWeight: viewMode === m ? 600 : 500, color: viewMode === m ? t1 : t2, background: "transparent", position: "relative", zIndex: 1, textTransform: "capitalize", transition: "color 0.16s", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
+                style={{ width: 80, minHeight: 28, borderRadius: 6, border: "none", cursor: "pointer", fontFamily: F, fontSize: 11, fontWeight: 600, color: viewMode === m ? t1 : t3, background: "transparent", position: "relative", zIndex: 1, textTransform: "capitalize", transition: "color 0.16s", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1, padding: "6px 8px" }}
               >{m}</button>
             ))}
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "flex-end", borderTop: "1px solid rgba(15,23,42,0.05)", paddingTop: 12 }}>
-          <div style={{ display: "flex", background: "#EEF0F4", borderRadius: 9, padding: 4, gap: 4, position: "relative" }}>
-            <div style={{ position: "absolute", top: 4, left: 4, width: "calc(33.33% - 5.33px)", height: "calc(100% - 8px)", background: card, borderRadius: 7, boxShadow: "0 1px 3px rgba(15,23,42,0.10)", transform: `translateX(${filterIdx * 100}%)`, transition: "transform 0.22s cubic-bezier(0.4,0,0.2,1)", pointerEvents: "none" }} />
+          <div style={{ display: "flex", background: "#F0F2F5", borderRadius: 8, padding: 3, gap: 0, position: "relative" }}>
+            <div style={{ position: "absolute", top: 3, left: 3, width: "calc(33.33% - 2px)", height: "calc(100% - 6px)", background: card, borderRadius: 6, boxShadow: "0 1px 3px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.03)", transform: `translateX(${filterIdx * 100}%)`, transition: "transform 0.22s cubic-bezier(0.4,0,0.2,1)", pointerEvents: "none" }} />
             {(["all", "4s", "6s"] as BType[]).map((bt, idx) => (
               <button key={bt} onClick={() => { setBtype(bt); setFilterIdx(idx) }}
-                style={{ flex: 1, minWidth: 60, height: 32, borderRadius: 7, border: "none", cursor: "pointer", fontFamily: F, fontSize: 11, fontWeight: btype === bt ? 600 : 500, color: btype === bt ? t1 : t2, background: "transparent", position: "relative", zIndex: 1, transition: "color 0.16s", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1 }}
+                style={{ flex: 1, minWidth: 60, minHeight: 28, borderRadius: 6, border: "none", cursor: "pointer", fontFamily: F, fontSize: 11, fontWeight: 600, color: btype === bt ? t1 : t3, background: "transparent", position: "relative", zIndex: 1, transition: "color 0.16s", display: "flex", alignItems: "center", justifyContent: "center", lineHeight: 1, padding: "6px 8px" }}
               >{bt === "all" ? "All" : bt === "4s" ? "Fours" : "Sixes"}</button>
             ))}
           </div>
