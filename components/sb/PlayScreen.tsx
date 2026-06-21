@@ -40,31 +40,50 @@ function HeaderStats() {
 
 // ─── MODE SEGMENT CONTROL ────────────────────────────────────────────────────
 function ModeSegment({ active, onChange }: { active: string; onChange(v: string): void }) {
+  const tabs = ["Learn & Improve", "Play & Entertain"]
+  const activeIdx = tabs.indexOf(active)
+  
   return (
-    <div style={{ margin: "16px 16px 16px", background: "#F0F2F5", borderRadius: 10, padding: 3, display: "flex", boxShadow: "inset 0 0.5px 1px rgba(16,24,40,0.05)" }}>
-      {["Learn & Improve", "Play & Entertain"].map(t => (
+    <div style={{ margin: "16px 16px 16px", background: "#F0F2F5", borderRadius: 10, padding: 3, display: "flex", gap: 0, position: "relative" }}>
+      {/* Sliding active indicator */}
+      <div style={{
+        position: "absolute",
+        top: 3,
+        left: 3,
+        width: "calc(50% - 3px)",
+        height: "calc(100% - 6px)",
+        background: card,
+        borderRadius: 7.5,
+        boxShadow: "0 1px 3px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.03)",
+        transform: `translateX(${activeIdx * 100}%)`,
+        transition: "transform 0.25s cubic-bezier(0.4, 0, 0.2, 1)",
+        pointerEvents: "none"
+      }} />
+      
+      {tabs.map((t) => (
         <button 
           key={t} 
           onClick={() => onChange(t)} 
           style={{ 
-            flex: 1, 
-            padding: "8px 12px", 
-            borderRadius: 7.5, 
-            border: "none", 
-            fontFamily: F, 
-            fontSize: 13, 
-            fontWeight: 600, 
-            cursor: "pointer", 
-            transition: "all .2s cubic-bezier(0.4, 0, 0.2, 1)", 
-            background: active === t ? card : "transparent", 
-            color: active === t ? t1 : t3, 
-            boxShadow: active === t ? "0 1px 3px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.03)" : "none",
+            flex: 1,
+            padding: "8px 12px",
+            borderRadius: 7.5,
+            border: "none",
+            fontFamily: F,
+            fontSize: 13,
+            fontWeight: 600,
+            cursor: "pointer",
+            background: "transparent",
+            color: active === t ? t1 : t3,
             whiteSpace: "nowrap",
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
             lineHeight: 1,
-            minHeight: 32
+            minHeight: 32,
+            position: "relative",
+            zIndex: 1,
+            transition: "color 0.2s ease"
           }}
         >
           {t}
