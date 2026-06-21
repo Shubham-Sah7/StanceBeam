@@ -41,9 +41,9 @@ function HeaderStats() {
 // ─── MODE SEGMENT CONTROL ────────────────────────────────────────────────────
 function ModeSegment({ active, onChange }: { active: string; onChange(v: string): void }) {
   return (
-    <div style={{ margin: "14px 16px 0", background: "#F0F2F5", borderRadius: 14, padding: 4, display: "flex", boxShadow: "inset 0 1px 2px rgba(16,24,40,0.06)" }}>
+    <div style={{ margin: "16px 16px 0", background: "#F0F2F5", borderRadius: 14, padding: 4, display: "flex", boxShadow: "inset 0 1px 2px rgba(16,24,40,0.06)" }}>
       {["Learn & Improve", "Play & Entertain"].map(t => (
-        <button key={t} onClick={() => onChange(t)} style={{ flex: 1, padding: "10px 8px", borderRadius: 11, border: "none", fontFamily: F, fontSize: 13, fontWeight: 600, cursor: "pointer", transition: "all .2s cubic-bezier(0.4, 0, 0.2, 1)", background: active === t ? card : "transparent", color: active === t ? t1 : t3, boxShadow: active === t ? "0 2px 8px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.04)" : "none" }}>{t}</button>
+        <button key={t} onClick={() => onChange(t)} style={{ flex: 1, padding: "11px 12px", borderRadius: 11, border: "none", fontFamily: F, fontSize: 13, fontWeight: 600, cursor: "pointer", transition: "all .2s cubic-bezier(0.4, 0, 0.2, 1)", background: active === t ? card : "transparent", color: active === t ? t1 : t3, boxShadow: active === t ? "0 2px 8px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.04)" : "none", whiteSpace: "nowrap" }}>{t}</button>
       ))}
     </div>
   )
@@ -52,9 +52,9 @@ function ModeSegment({ active, onChange }: { active: string; onChange(v: string)
 // ─── CATEGORY FILTER ─────────────────────────────────────────────────────────
 function CategoryFilter({ active, onChange }: { active: string; onChange(v: string): void }) {
   return (
-    <div style={{ margin: "12px 16px 0", display: "flex", gap: 8 }}>
+    <div style={{ margin: "14px 16px 0", display: "flex", gap: 8 }}>
       {["All Games", "My Playing History"].map(t => (
-        <button key={t} onClick={() => onChange(t)} style={{ flex: 1, padding: "9px 12px", borderRadius: 12, border: "none", fontFamily: F, fontSize: 13, fontWeight: 600, cursor: "pointer", background: active === t ? navy : card, color: active === t ? "#FFFFFF" : t2, boxShadow: active === t ? "0 2px 10px rgba(8,28,58,0.15)" : "0 1px 3px rgba(15,23,42,0.06)", outline: active === t ? "none" : "1px solid rgba(15,23,42,0.06)", transition: "all .18s cubic-bezier(0.4, 0, 0.2, 1)" }}>{t}</button>
+        <button key={t} onClick={() => onChange(t)} style={{ flex: 1, padding: "10px 12px", borderRadius: 12, border: "none", fontFamily: F, fontSize: 13, fontWeight: 600, cursor: "pointer", background: active === t ? navy : card, color: active === t ? "#FFFFFF" : t2, boxShadow: active === t ? "0 2px 10px rgba(8,28,58,0.15)" : "0 1px 3px rgba(15,23,42,0.06)", outline: active === t ? "none" : "1px solid rgba(15,23,42,0.06)", transition: "all .18s cubic-bezier(0.4, 0, 0.2, 1)", whiteSpace: "nowrap" }}>{t}</button>
       ))}
     </div>
   )
