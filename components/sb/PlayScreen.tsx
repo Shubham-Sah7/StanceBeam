@@ -63,7 +63,7 @@ function CategoryFilter({ active, onChange }: { active: string; onChange(v: stri
 // ─── SECTION HEADER ──────────────────────────────────────────────────────────
 function SectionHeader({ title, action }: { title: string; action?: string }) {
   return (
-    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "24px 16px 12px" }}>
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", margin: "32px 16px 16px" }}>
       <span style={{ fontFamily: F, fontSize: 17, fontWeight: 700, color: t1, letterSpacing: "-0.3px" }}>{title}</span>
       {action && (
         <button style={{ fontFamily: F, fontSize: 13, fontWeight: 600, color: navy, background: "transparent", border: "none", cursor: "pointer", display: "flex", alignItems: "center", gap: 4 }}>
@@ -159,7 +159,7 @@ function FeaturedGames() {
   return (
     <>
       <SectionHeader title="Featured Games" action="See All" />
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, padding: "0 16px" }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, padding: "0 16px" }}>
         {games.map((game, i) => (
           <GameCard key={i} game={game} featured />
         ))}
@@ -178,7 +178,7 @@ function CompeteSection() {
   return (
     <>
       <SectionHeader title="Compete with Others" action="See All" />
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "0 16px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "0 16px" }}>
         {games.map((game, i) => (
           <div key={i} style={{ position: "relative" }}>
             {/* Rank badge */}
@@ -201,7 +201,7 @@ function MostPlayedSection() {
   return (
     <>
       <SectionHeader title="Most Played at Your Center" action="See All" />
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "0 16px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "0 16px" }}>
         {games.map((game, i) => (
           <div key={i} style={{ position: "relative" }}>
             {/* Popularity indicator */}
@@ -226,7 +226,7 @@ function RecentlyCompleted() {
   return (
     <>
       <SectionHeader title="Recently Completed by You" action="See All" />
-      <div style={{ display: "flex", flexDirection: "column", gap: 10, padding: "0 16px" }}>
+      <div style={{ display: "flex", flexDirection: "column", gap: 12, padding: "0 16px 24px" }}>
         {games.map((game, i) => (
           <div key={i} style={{ position: "relative" }}>
             {/* Completion badge */}
@@ -300,7 +300,7 @@ export default function PlayScreen() {
       <ModeSegment active={mode} onChange={setMode} />
       <CategoryFilter active={category} onChange={setCategory} />
       
-      <div style={{ flex: 1, overflowY: "auto", paddingBottom: 16 }}>
+      <div style={{ flex: 1, overflowY: "auto" }}>
         <FeaturedGames />
         <CompeteSection />
         <MostPlayedSection />
