@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect, useRef } from "react"
-import { Bell, Info, X, Lock, Check, ChevronRight, Grid3x3, Home, Lightbulb, CalendarDays, CircleUser } from "lucide-react"
+import { Bell, Info, X, Lock, Check, ChevronRight, Grid3x3 } from "lucide-react"
 import GlassCard from "../ui/GlassCard"
 import * as designTokens from "@/designTokens"
 
@@ -1076,35 +1076,6 @@ function PlayContent() {
 }
 
 // ─── BOTTOM NAV ──────────────────────────────────────────────────────────────
-function BottomNav() {
-  const [pressedLbl, setPressedLbl] = useState<string | null>(null)
-  const items = [
-    { lbl: "Journey",     Icon: Home,         active: true  },
-    { lbl: "Inspiration", Icon: Lightbulb,    active: false },
-    { lbl: "Sessions",    Icon: CalendarDays, active: false },
-    { lbl: "Profile",     Icon: CircleUser,   active: false },
-  ]
-  return (
-    <div style={{ background: bg, borderTop: "0.5px solid rgba(15,23,42,0.08)", display: "flex", padding: "6px 0 22px" }}>
-      {items.map(({ lbl, Icon, active }) => {
-        const isPressed = pressedLbl === lbl
-        return (
-          <button key={lbl}
-            onMouseDown={() => setPressedLbl(lbl)} onMouseUp={() => setPressedLbl(null)}
-            onMouseLeave={() => setPressedLbl(null)} onTouchStart={() => setPressedLbl(lbl)} onTouchEnd={() => setPressedLbl(null)}
-            style={{ flex: 1, display: "flex", flexDirection: "column", alignItems: "center", gap: 3, cursor: "pointer", border: "none", background: "transparent", padding: "6px 8px", minHeight: 60, justifyContent: "center" }}
-          >
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", width: 38, height: 28, borderRadius: 10, background: active ? "rgba(8,28,58,0.07)" : "transparent", transform: isPressed ? "scale(0.84)" : "scale(1)", transition: "transform 0.12s cubic-bezier(0.4,0,0.2,1)" }}>
-              <Icon size={21} color={active ? navy : t3} strokeWidth={active ? 2 : 1.5}/>
-            </div>
-            <span style={{ fontFamily: F, fontSize: 10.5, fontWeight: active ? 600 : 500, color: active ? t1 : t3, opacity: isPressed ? 0.6 : 1, transition: "opacity 0.1s" }}>{lbl}</span>
-          </button>
-        )
-      })}
-    </div>
-  )
-}
-
 // ─── MAIN ────────────────────────────────────────────────────────────────────
 export default function JourneyScreen() {
   const [seg, setSeg] = useState("Learn & Improve")
@@ -1165,7 +1136,6 @@ export default function JourneyScreen() {
         </div>
       )}
 
-      <BottomNav/>
     </div>
   )
 }
