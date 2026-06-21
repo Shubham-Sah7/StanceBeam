@@ -188,27 +188,50 @@ function Header() {
 // ─── SEGMENT CONTROL ─────────────────────────────────────────────────────────
 function SegControl({ active, onChange }: { active: string; onChange(v: string): void }) {
   const tabs = ["Learn & Improve", "Play & Entertain"]
-  const activeIdx = tabs.indexOf(active)
   return (
-    <div style={{ margin: "16px 16px 16px", background: "#F0F2F5", borderRadius: 10, padding: 3, display: "flex", gap: 0, position: "relative" }}>
-      <div style={{
-        position: "absolute", top: 3, left: 3 + activeIdx * (50),
-        width: `calc(50% - 3px)`, height: "calc(100% - 6px)", background: card, borderRadius: 7.5,
-        boxShadow: "0 1px 3px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.03)",
-        transform: `translateX(${activeIdx * 100}%)`,
-        transition: "transform 0.22s cubic-bezier(0.4,0,0.2,1)",
-        pointerEvents: "none"
-      }} />
+    <div style={{
+      margin: "16px 16px 16px",
+      background: "#F0F2F5",
+      borderRadius: 10,
+      padding: 3,
+      display: "flex",
+      gap: 3,
+      overflow: "hidden",
+    }}>
       {tabs.map(t => {
         const on = active === t
         return (
-          <button key={t} onClick={() => onChange(t)} style={{
-            flex: 1, minHeight: 32, borderRadius: 7.5, border: "none", fontFamily: F,
-            fontSize: 13, fontWeight: 600, color: on ? t1 : t3, lineHeight: 1,
-            cursor: "pointer", background: "transparent", position: "relative", zIndex: 1,
-            transition: "color 0.18s ease", display: "flex", alignItems: "center", justifyContent: "center",
-            padding: "8px 12px"
-          }}>{t}</button>
+          <button
+            key={t}
+            onClick={() => onChange(t)}
+            style={{
+              flex: "1 1 0",
+              minWidth: 0,
+              minHeight: 32,
+              padding: "8px 6px",
+              borderRadius: 7.5,
+              border: "none",
+              outline: "none",
+              fontFamily: F,
+              fontSize: 13,
+              fontWeight: 600,
+              color: on ? t1 : t3,
+              lineHeight: 1,
+              cursor: "pointer",
+              background: on ? card : "transparent",
+              boxShadow: on
+                ? "0 1px 3px rgba(16,24,40,0.08), 0 0 0 0.5px rgba(16,24,40,0.03)"
+                : "none",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              textAlign: "center",
+              whiteSpace: "nowrap",
+              transition: "background 0.22s cubic-bezier(0.4,0,0.2,1), color 0.18s ease, box-shadow 0.22s ease",
+            }}
+          >
+            {t}
+          </button>
         )
       })}
     </div>
@@ -247,7 +270,7 @@ function TimeTabs({ active, onChange }: { active: string; onChange(v: string): v
 // ─── SECTION TITLE ───────────────────────────────────────────────────────────
 function SectionTitle({ label }: { label: string }) {
   return (
-    <div style={{ margin: "40px 16px 20px", display: "flex", alignItems: "center" }}>
+    <div style={{ margin: "24px 16px 12px", display: "flex", alignItems: "center" }}>
       {label === "Batting" && <CricketBatIcon size={20} style={{ marginRight: 10, transform: "rotate(45deg) translateY(-2px)" }} />}
       {label === "Bowling" && <CricketBallIcon size={18} style={{ marginRight: 10 }} />}
       <span style={{ fontFamily: FS, fontSize: 18, fontWeight: 400, letterSpacing: "-0.4px", color: t1, lineHeight: 1.25 }}>{label}</span>
@@ -1035,22 +1058,19 @@ function PlayContent() {
       <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8, padding: "0 16px" }}>
         {featured.map((g, i) => <GameCard key={i} game={g}/>)}
       </div>
-      <div style={{ height: 24 }}/>
       <SectionTitle label="Compete with Others"/>
       <div style={{ display: "flex", flexDirection: "column", gap: 8, padding: "0 16px" }}>
         {compete.map((g, i) => <GameCard key={i} game={g} badge={<div style={{ width: 30, height: 30, borderRadius: "50%", background: navy, color: "#fff", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: F, fontSize: 11, fontWeight: 700 }}>#{g.rank}</div>}/>)}
       </div>
-      <div style={{ height: 24 }}/>
       <SectionTitle label="Most Played at Your Center"/>
       <div style={{ display: "flex", flexDirection: "column", gap: 8, padding: "0 16px" }}>
         {mostPlayed.map((g, i) => <GameCard key={i} game={g} badge={<div style={{ display: "flex", alignItems: "center", gap: 3, background: "rgba(255,255,255,0.97)", padding: "4px 7px", borderRadius: 7, boxShadow: SH2, border: `1px solid ${t4}` }}><svg width="9" height="9" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill={navy}/></svg><span style={{ fontFamily: F, fontSize: 10, fontWeight: 700, color: t1 }}>{g.popularity}%</span></div>}/>)}
       </div>
-      <div style={{ height: 24 }}/>
       <SectionTitle label="Recently Completed by You"/>
       <div style={{ display: "flex", flexDirection: "column", gap: 8, padding: "0 16px" }}>
         {completed.map((g, i) => <GameCard key={i} game={g} badge={<div style={{ background: `linear-gradient(135deg,${green},#00C863)`, padding: "5px 10px", borderRadius: 9 }}><div style={{ fontFamily: F, fontSize: 15, fontWeight: 700, color: navy, lineHeight: 1 }}>{g.score}</div><div style={{ fontFamily: F, fontSize: 9.5, fontWeight: 600, color: "rgba(0,87,42,0.85)", marginTop: 2 }}>{g.improvement}</div></div>}/>)}
       </div>
-      <div style={{ height: 16 }}/>
+      <div style={{ height: 12 }}/>
     </>
   )
 }
@@ -1126,17 +1146,17 @@ export default function JourneyScreen() {
           <div style={{ animation: "fadeSlideUp 0.32s 0.30s cubic-bezier(0.16,1,0.3,1) both" }}>
             <SectionTitle label="Bowling"/>
             <TimeTabs active={btab} onChange={setBtab}/>
-            <div style={{ height: 16 }}/>
+            <div style={{ height: 12 }}/>
             <BowlingPerformanceCard stats={wStats}/>
-            <div style={{ height: 16 }}/>
+            <div style={{ height: 12 }}/>
             <LoadMgmt/>
-            <div style={{ height: 16 }}/>
+            <div style={{ height: 12 }}/>
             <PitchMap/>
-            <div style={{ height: 16 }}/>
+            <div style={{ height: 12 }}/>
             <AICoach insight="Front Arm Mechanics" category="Bowling Insight" text="Your front arm is collapsing early in the delivery stride. Keep it strong and high through release to generate more pace."/>
             <div style={{ height: 24 }}/>
             <Records type="bowling"/>
-            <div style={{ height: 24 }}/>
+            <div style={{ height: 16 }}/>
           </div>
         </div>
       ) : (
